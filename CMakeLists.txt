@@ -58,6 +58,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate services in the 'srv' folder
  add_service_files(
    FILES
+   irSignal.srv
 #   Service1.srv
 #   Service2.srv
  )
@@ -219,3 +220,12 @@ add_dependencies(keyboard_publisher project_avgRobot_generate_messages_cpp)
 add_executable(keyboard_subscriber src/keyboard_input_subscriber.cpp)
 target_link_libraries(keyboard_subscriber ${catkin_LIBRARIES})
 add_dependencies(keyboard_subscriber project_avgRobot_generate_messages_cpp)
+
+#IR Signals
+add_executable(ir_server src/irServer.cpp)
+target_link_libraries(ir_server ${catkin_LIBRARIES})
+add_dependencies(ir_server project_avgRobot_gencpp)
+
+add_executable(ir_client src/irClient.cpp)
+target_link_libraries(ir_client ${catkin_LIBRARIES})
+add_dependencies(ir_client project_avgRobot_gencpp)
