@@ -1,15 +1,9 @@
 #include "ros/ros.h"
-
 #include "std_msgs/String.h"
-
 #include "project_avgRobot/keyboard.h"
-
-//#include "avg_robot/MotorWarning.h"
-
-//#include "avg_robot/MotorControl.h"
-
+#include "project_avgRobot/motorWarning.h"
+#include "project_avgRobot/motorControl.h"
 #include <algorithm>
-
 #include <string>
 
 bool canMove = true;
@@ -20,36 +14,33 @@ std::string change = "";
 
 void chatterCallback(const project_avgRobot::keyboard keyb)
 {
-
-//  if (canMove) {
-//    ROS_INFO("receive direction: [%s]", keyb.navigation.c_str());
-//    change = keyb.navigation.c_str();
+ if (canMove) {
+   ROS_INFO("receive direction: [%s]", keyb.navigation.c_str());
+   change = keyb.navigation.c_str();
     
-//    std::transform(change.begin(), change.end(),change.begin(), ::toupper);
+   std::transform(change.begin(), change.end(),change.begin(), ::toupper);
 
-//    controlRobot = change;
-//  } else {
-//    ROS_INFO("Robot stop!");
-//    controlRobot="STOP";
-//  }
-  
-	ROS_INFO("receive direction: [%s]", keyb.navigation.c_str());
+   controlRobot = change;
+ } else {
+   ROS_INFO("Robot stop!");
+   controlRobot="STOP";
+ }
 }
 
-//void warningCallback(const avg_robot::MotorWarning warning)
-//{
-//
-//  // ROS_INFO("receive warning: [%d]", warning.enable);
-//  if (warning.enable) {
-//    ROS_INFO("GO!");
-//    canMove = true;
-//  } else {
-//    ROS_INFO("CANCEL!");
-//    canMove = false;
-//    controlRobot="STOP";
-//  }
-//
-//}
+void warningCallback(const project_avgRobot::motorWarning warning)
+{
+
+ // ROS_INFO("receive warning: [%d]", warning.enable);
+ if (warning.enable) {
+   ROS_INFO("GO!");
+   canMove = true;
+ } else {
+   ROS_INFO("CANCEL!");
+   canMove = false;
+   controlRobot="STOP";
+ }
+
+}
 
 
 int main(int argc, char **argv)
@@ -60,26 +51,26 @@ int main(int argc, char **argv)
 
   ros::Subscriber sub = n.subscribe("input_keyboard", 1, chatterCallback);
 
-//  ros::Subscriber motor_sub = n.subscribe("motor_warning", 1, warningCallback);
-//
-//  ros::Publisher chatter_pub = n.advertise<project_avgRobot::MotorControl>("motor_control", 1000);
-//
-//  ros::Rate loop_rate(1);
+ ros::Subscriber motor_sub = n.subscribe("motor_warning", 1, warningCallback);
 
-//  while (ros::ok()) {
-//      project_avgRobot::MotorControl controlMsg;
-//
-//      controlMsg.control = controlRobot;
-//
-//      ROS_INFO("send Control to motor [%s]", controlMsg.control.c_str());
-//
-//      chatter_pub.publish(controlMsg);
-//
-//      ros::spinOnce();
-//
-//      loop_rate.sleep();
-//  }
-//    
+ ros::Publisher chatter_pub = n.advertise<project_avgRobot::motorControl>("motor_control", 1000);
+
+ ros::Rate loop_rate(1);
+
+ while (ros::ok()) {
+     project_avgRobot::motorControl controlMsg;
+
+     controlMsg.control = controlRobot;
+
+     ROS_INFO("send Control to motor [%s]", controlMsg.control.c_str());
+
+     chatter_pub.publish(controlMsg);
+
+     ros::spinOnce();
+
+     loop_rate.sleep();
+ }
+   
 
   ros::spin();
 

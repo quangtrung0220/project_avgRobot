@@ -21,11 +21,11 @@ void dCallback(const project_avgRobot::distance msg)
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "motor_status_subscriber");
+    ros::init(argc, argv, "motor_status");
 
     ros::NodeHandle n;
 
-    ros::Subscriber sub = n.subscribe("robot_d", 1000, dCallback);
+    ros::Subscriber sub = n.subscribe("robot_distance", 1000, dCallback);
 
     ros::Publisher chatter_pub = n.advertise<project_avgRobot::motorWarning>("motor_warning", 1000);
 

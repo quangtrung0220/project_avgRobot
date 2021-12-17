@@ -23,7 +23,7 @@ void chatterCallback(const project_avgRobot::motorControl motor)
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "motor_control_subscriber");
+  ros::init(argc, argv, "motor");
 
   ros::NodeHandle n;
 

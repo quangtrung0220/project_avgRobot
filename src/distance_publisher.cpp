@@ -1,9 +1,6 @@
 #include "ros/ros.h"
-
 #include "std_msgs/String.h"
-
 #include "project_avgRobot/distance.h"
-
 #include <sstream>
 
 int main(int argc, char **argv)

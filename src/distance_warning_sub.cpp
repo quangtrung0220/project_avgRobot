@@ -22,11 +22,11 @@ void dCallback(const project_avgRobot::distance msg)
 
 int main(int argc, char **argv)
 {
-  ros::init(argc, argv, "d_warning_subscriber");
+  ros::init(argc, argv, "distance_warning");
 
   ros::NodeHandle n;
 
-  ros::Subscriber sub = n.subscribe("robot_d", 1000, dCallback);
+  ros::Subscriber sub = n.subscribe("robot_distance", 1000, dCallback);
 
   ros::spin();
 

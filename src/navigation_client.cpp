@@ -25,9 +25,9 @@
       map.showMap();
      }
 
-     if (argc != 4)
+     if (argc != 3)
       {
-       ROS_INFO("Nhap lai cac tham so [Start] [Package] [End]");
+       ROS_INFO("Nhap lai cac tham so [Start]  [End]");
        return 1;
      }
    
@@ -35,8 +35,7 @@
      ros::ServiceClient client = n.serviceClient<project_avgRobot::navigationInMap>("map_navigation");
      project_avgRobot::navigationInMap srv;
      srv.request.startPt = atoi(argv[1]);
-     srv.request.packagePt = atoi(argv[2]);
-     srv.request.endPt = atoi(argv[3]);
+     srv.request.endPt = atoi(argv[2]);
      if (client.call(srv))
      {
        ROS_INFO("Direction Array: %s", srv.response.navigationArray.c_str());

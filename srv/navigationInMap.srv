@@ -1,5 +1,4 @@
 int8 startPt
-int8 packagePt
 int8 endPt
 ---
 string navigationArray

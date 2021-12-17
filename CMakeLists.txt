@@ -249,16 +249,16 @@ add_executable(distance_publisher src/distance_publisher.cpp)
 target_link_libraries(distance_publisher ${catkin_LIBRARIES})
 add_dependencies(distance_publisher project_avgRobot_generate_messages_cpp)
 
-add_executable(distance_warning_subscriber src/distance_warning_sub.cpp)
-target_link_libraries(distance_warning_subscriber ${catkin_LIBRARIES})
-add_dependencies(distance_warning_subscriber project_avgRobot_generate_messages_cpp)
+add_executable(distance_warning src/distance_warning_sub.cpp)
+target_link_libraries(distance_warning ${catkin_LIBRARIES})
+add_dependencies(distance_warning project_avgRobot_generate_messages_cpp)
 
-add_executable(distance_motor_status_subscriber src/distance_subscriber.cpp)
-target_link_libraries(distance_motor_status_subscriber ${catkin_LIBRARIES})
-add_dependencies(distance_motor_status_subscriber project_avgRobot_generate_messages_cpp)
+add_executable(motor_status src/distance_subscriber.cpp)
+target_link_libraries(motor_status ${catkin_LIBRARIES})
+add_dependencies(motor_status project_avgRobot_generate_messages_cpp)
 
 
 #Motor Control
-add_executable(motor_control_subscriber src/motor.cpp)
-target_link_libraries(motor_control_subscriber ${catkin_LIBRARIES})
-add_dependencies(motor_control_subscriber project_avgRobot_generate_messages_cpp)
+add_executable(motor_control src/motor.cpp)
+target_link_libraries(motor_control ${catkin_LIBRARIES})
+add_dependencies(motor_control project_avgRobot_generate_messages_cpp)

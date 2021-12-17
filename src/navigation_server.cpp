@@ -11,7 +11,7 @@ std::string path_finder(algorthimAstar a, Map map, int startPt, int endPt);
    
    
 bool path_finder_service(project_avgRobot::navigationInMap::Request  &req, project_avgRobot::navigationInMap::Response &res) {
-    ROS_INFO("request: startPt=%d, packagePoint=%d, endPt=%d", req.startPt, req.packagePt, req.endPt);
+    ROS_INFO("request: startPt=%d, endPt=%d", req.startPt, req.endPt);
 
     algorthimAstar a;
 
@@ -19,9 +19,7 @@ bool path_finder_service(project_avgRobot::navigationInMap::Request  &req, proje
 
     std::string result_finder = "";
 
-    result_finder = path_finder(a, map, req.startPt, req.packagePt);
-
-    result_finder += path_finder(a, map, req.packagePt, req.endPt);
+    result_finder = path_finder(a, map, req.startPt, req.endPt);
     
     res.navigationArray = result_finder;
 
@@ -37,7 +35,7 @@ int main(int argc, char **argv)
 
     ros::ServiceServer service = n.advertiseService("map_navigation", path_finder_service);
     
-    ROS_INFO("Nhap cac tham so [Start] [Package] [End] o Client");
+    ROS_INFO("Nhap cac tham so [Start] [End] o Client");
     
     ros::spin();
 
