@@ -19,16 +19,7 @@
 #define KEYCODE_LEFT 0x44
 #define KEYCODE_UP 0x41
 #define KEYCODE_DOWN 0x42
-#define KEYCODE_B 0x62
-#define KEYCODE_C 0x63
-#define KEYCODE_D 0x64
-#define KEYCODE_E 0x65
-#define KEYCODE_F 0x66
-#define KEYCODE_G 0x67
 #define KEYCODE_Q 0x71
-#define KEYCODE_R 0x72
-#define KEYCODE_T 0x74
-#define KEYCODE_V 0x76
 
 class KeyboardReader
 {
@@ -88,56 +79,6 @@ public:
           *c = KEYCODE_DOWN;
           return;
         }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x42)
-//        {
-//          *c = KEYCODE_B;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x43)
-//        {
-//          *c = KEYCODE_C;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x44)
-//        {
-//          *c = KEYCODE_D;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x45)
-//        {
-//          *c = KEYCODE_E;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x46)
-//        {
-//          *c = KEYCODE_F;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x47)
-//        {
-//          *c = KEYCODE_G;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x51)
-//        {
-//          *c = KEYCODE_Q;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x52)
-//        {
-//          *c = KEYCODE_R;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x54)
-//        {
-//          *c = KEYCODE_T;
-//          return;
-//        }
-//        else if (buffer.Event.KeyEvent.wVirtualKeyCode == 0x56)
-//        {
-//          *c = KEYCODE_V;
-//          return;
-//        }
       }
     }
 #endif

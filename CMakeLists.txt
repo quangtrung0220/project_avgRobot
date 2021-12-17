@@ -50,7 +50,11 @@ find_package(catkin REQUIRED COMPONENTS
 ## Generate messages in the 'msg' folder
  add_message_files(
    FILES
-	 keyboard.msg
+	keyboard.msg
+	distance.msg
+	motorWarning.msg
+	distance.msg
+	motorControl.msg
 #   Message1.msg
 #   Message2.msg
  )
@@ -59,6 +63,7 @@ find_package(catkin REQUIRED COMPONENTS
  add_service_files(
    FILES
    irSignal.srv
+   navigationInMap.srv
 #   Service1.srv
 #   Service2.srv
  )
@@ -229,3 +234,31 @@ add_dependencies(ir_server project_avgRobot_gencpp)
 add_executable(ir_client src/irClient.cpp)
 target_link_libraries(ir_client ${catkin_LIBRARIES})
 add_dependencies(ir_client project_avgRobot_gencpp)
+
+#Path Finder
+add_executable(map_navigation_server src/navigation_server.cpp)
+target_link_libraries(map_navigation_server ${catkin_LIBRARIES})
+add_dependencies(map_navigation_server project_avgRobot_gencpp)
+
+add_executable(map_navigation_client src/navigation_client.cpp)
+target_link_libraries(map_navigation_client ${catkin_LIBRARIES})
+add_dependencies(map_navigation_client project_avgRobot_gencpp)
+
+#Distance and Warning
+add_executable(distance_publisher src/distance_publisher.cpp)
+target_link_libraries(distance_publisher ${catkin_LIBRARIES})
+add_dependencies(distance_publisher project_avgRobot_generate_messages_cpp)
+
+add_executable(distance_warning_subscriber src/distance_warning_sub.cpp)
+target_link_libraries(distance_warning_subscriber ${catkin_LIBRARIES})
+add_dependencies(distance_warning_subscriber project_avgRobot_generate_messages_cpp)
+
+add_executable(distance_motor_status_subscriber src/distance_subscriber.cpp)
+target_link_libraries(distance_motor_status_subscriber ${catkin_LIBRARIES})
+add_dependencies(distance_motor_status_subscriber project_avgRobot_generate_messages_cpp)
+
+
+#Motor Control
+add_executable(motor_control_subscriber src/motor.cpp)
+target_link_libraries(motor_control_subscriber ${catkin_LIBRARIES})
+add_dependencies(motor_control_subscriber project_avgRobot_generate_messages_cpp)
